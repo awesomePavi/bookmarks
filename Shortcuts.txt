@@ -1,0 +1,13 @@
+Youtube = true
+Gitlab = true
+Github = true
+Gmail = true
+Facebook = true
+D2L = true
+Mosaic = true
+OscarPlus = true
+Weather = true
+Linkedin = true
+Mega = true
+Dropbox = true
+GoogleDrive = true
