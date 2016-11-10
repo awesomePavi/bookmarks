@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <style>
 html{
+	height: 100%;
 	width:100%; 
 	margin:0; 
 	padding:0;
 }
 	body {
-		width:100%; 
+		height: 100%;
+	width:100%; 
 		margin:0; 
 		padding:0;
 	    padding: 10px;
 	    text-align: center;
-	    background-color: #CCCCCC;
+	    background-image: url("./WallFall.jpg");
+	    background-size: cover;
+    	background-repeat: no-repeat;
+
 	    overflow: hidden;
 
 	}
@@ -49,14 +54,77 @@ html{
 		min-width: 80px;
 	}
 
+	.overlay{
+		background-color: rgba(255, 255, 255, 0.9);
+	}
+
+	#clock{
+		float: left;
+		 padding-top: 65px;
+		  padding-bottom: 40px;
+		    width: 50%;
+		     font-size: 3em;
+		      text-align: center;
+	}
+
+	#classInfo{
+		float: right;
+		 padding-top: 20px;
+		  padding-bottom: 20px;
+		   width: 50%
+	}
+
+	@media (max-width: 700px) { 
+		#clock{
+			display:none;
+			float: left;
+		 padding: 0;
+		    width: 0%;
+		     font-size: 0em;
+		      text-align: center;
+		}
+		#classInfo{
+			float: left;
+			width: 100%;
+		}
+
+	 }
+
 </style>
 <title>SFWR ENG 3</title>
 <html>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="Shortcuts.js"></script>
 <body>
 <h1></h1>
-<div style="padding-top: 20px; padding-bottom: 20px; margin-left: -10px; background-color: #FFFFFF; width: 100%">
+<div class="overlay" style="float: left; width: 100%; margin: 0; margin-left:-10px; padding: 0;">
+<div id="clock"></div>
+<script>
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    var amPm = "AM";
+    if (h > 12){
+		amPm = "PM"
+		h -=12;
+    }
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('clock').innerHTML =
+    h + ":" + m + ":" + s +" "+amPm;
+    var t = setTimeout(startTime, 500);
+}
+
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+startTime();
+</script>
+<div id="classInfo">
 <a href="http://www.cas.mcmaster.ca/~deza/secs4O03_16.html">SWFR ENG 3O03</a> | 
 <a href="http://ocw.mit.edu/courses/sloan-school-of-management/15-053-optimization-methods-in-management-science-spring-2013/lecture-notes/">MIT Notes</a><br>
 <a href="https://avenue.cllmcmaster.ca/d2l/home/189802">SWFR ENG 3XA3</a> |
@@ -67,15 +135,23 @@ html{
 <a href="https://avenue.cllmcmaster.ca/d2l/home/188262">SWFR ENG 3BB4</a><br>
 <br>
 </div>
-<br>
+</div>
 
-
+<div style="float: left; width:100%;  padding-top: 20px; padding-bottom: 10px">
 <form  method="get" action="https://www.google.com/search">
 <input type="text" name="q" class="mytext" placeholder="  Google Search" value="" >
 </form>
-<br>
+</div>
 
-<div id="shortcut" style="padding-top: 20px; padding-bottom: 20px; background-color: #FFFFFF; margin-left: -10px;  width: 100%">
+<!-- 
+ - Add BITLY 
+ - github gist
+ - clock
+ - weather widget
+ -->
+
+
+<div  id="shortcut" style="float: left; padding-top: 10px; padding-bottom: 10px; margin-left: -10px;  width: 100%">
 </div>
 <br>
 </body>

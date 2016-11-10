@@ -10,4 +10,5 @@ https://www.theweathernetwork.com/ca/weather/ontario/hamilton
 https://www.linkedin.com
 https://mega.nz
 https://www.dropbox.com
-https://www.google.com/drive/
+https://drive.google.com/drive/my-drive
+http://bitly.com

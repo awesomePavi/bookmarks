@@ -11,3 +11,4 @@ Linkedin = true
 Mega = true
 Dropbox = true
 GoogleDrive = true
+Bitly = true
