@@ -1,104 +1,20 @@
 <!DOCTYPE html>
-<style>
-html{
-	height: 100%;
-	width:100%; 
-	margin:0; 
-	padding:0;
-}
-	body {
-		height: 100%;
-	width:100%; 
-		margin:0; 
-		padding:0;
-	    padding: 10px;
-	    text-align: center;
-	    background-image: url("./WallFall.jpg");
-	    background-size: cover;
-    	background-repeat: no-repeat;
-
-	    overflow: hidden;
-
-	}
-
-	a {
-		font-size: 20px;
-	}
-
-	a:visited{
-		color: #222222;
-	}
-	a:hover{
-			color: #FFFFFF;
-	}
-	a:active{
-		color: #FFFFFF;
-	}
-	a:link{
-		color: #222222;
-	}
-
-	
-
-	.mytext {
-		max-width: 800px;
-		min-width: 400px;
-    width: 60%;
-    /*height: 2em;*/
-    font-size: 1.3em;
-	}
-
-	.shortcut{
-		padding:5px;
-		max-width: 100px;
-		min-width: 80px;
-	}
-
-	.overlay{
-		background-color: rgba(255, 255, 255, 0.9);
-	}
-
-	#clock{
-		float: left;
-		 padding-top: 65px;
-		  padding-bottom: 40px;
-		    width: 50%;
-		     font-size: 3em;
-		      text-align: center;
-	}
-
-	#classInfo{
-		float: right;
-		 padding-top: 20px;
-		  padding-bottom: 20px;
-		   width: 50%
-	}
-
-	@media (max-width: 700px) { 
-		#clock{
-			display:none;
-			float: left;
-		 padding: 0;
-		    width: 0%;
-		     font-size: 0em;
-		      text-align: center;
-		}
-		#classInfo{
-			float: left;
-			width: 100%;
-		}
-
-	 }
-
-</style>
-<title>SFWR ENG 3</title>
 <html>
+<title>SFWR ENG 3</title>
 
+<link href="./css/HomePage.css" rel="stylesheet" type="text/css">
+
+<!--Import Google Icon Font-->
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="Shortcuts.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<!--<script src="Shortcuts.js"></script>-->
+<script src="./js/LocalStorage.js"></script>
 <body>
 <h1></h1>
-<div class="overlay" style="float: left; width: 100%; margin: 0; margin-left:-10px; padding: 0;">
+<div class="overlay" style="float: left; width: 100%; margin: 0; margin-left:0px; padding: 0;">
 <div id="clock"></div>
 <script>
 function startTime() {
@@ -143,6 +59,46 @@ startTime();
 </form>
 </div>
 
+<!-- Colored FAB button with ripple -->
+ <div id="settings" class="fixed-action-btn">
+    <a class="btn-floating btn-large orange waves-effect waves-light" href="#modal1">
+      <i class="large material-icons">add</i>
+    </a>
+
+</div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <form action="#" >
+      <fieldset>
+      <legend>SHORTCUTS</legend>
+     <p id = "shortcutEdit">
+
+
+
+    </p>
+    </fieldset>
+    
+    </form>
+    </div>
+
+ 
+
+    <div class="modal-footer">
+ 	<a class="modal-action modal-close waves-effect waves-light btn" style="float: left;">DONT SAVE</a>
+    <a class="waves-effect waves-light btn" style="float: right;" onclick="saveShortcuts()">SAVE</a>
+    </div>
+  </div>
+          
+<script>
+buildEdit();
+</script>
+
+
+
+
 <!-- 
  - Add BITLY 
  - github gist
@@ -153,6 +109,9 @@ startTime();
 
 <div  id="shortcut" style="float: left; padding-top: 10px; padding-bottom: 10px; margin-left: -10px;  width: 100%">
 </div>
+<script>
+loadShortCuts();
+</script>
 <br>
 </body>
 </html>
