@@ -1,19 +1,22 @@
 function loadPage(){
 if (typeof(Storage)!== "undefined") {
-	if(localStorage.getItem("version") == "2.0"){
+	if(localStorage.getItem("version") == "2.1"){
+		loadBG();
 		buildDescrip();
 		buildShortcuts();
 	}else{
 		establishLocalStore();
+		loadBG();
 		buildDescrip();
 		buildShortcuts();
+		location.reload();
 	}
-	
+
 } else {
    noStoreAvail();
    document.getElementById("settings").style.display = "none";
 }
-}
+ }
 
 function noStoreAvail(){
 	//build shortcuts
@@ -37,7 +40,7 @@ function noStoreAvail(){
 
 	var i1 = document.createElement("a");
 	i1.href = "https://avenue.cllmcmaster.ca/d2l/home/189241";
-	il.innerHTML =  "SWFR ENG 3I03";
+	i1.innerHTML =  "SWFR ENG 3I03";
 
 	var i2 = document.createElement("a");
 	i2.href = "https://avenue.cllmcmaster.ca/d2l/home/185905";
@@ -47,17 +50,28 @@ function noStoreAvail(){
 	i3.href = "https://avenue.cllmcmaster.ca/d2l/home/196496";
 	i3.innerHTML =  "SWFR ENG 3A04";
 
-	var i3 = document.createElement("a");
-	i3.href = "https://avenue.cllmcmaster.ca/d2l/home/202806";
-	i3.innerHTML =  "SWFR ENG 3S03";
+	var i4 = document.createElement("a");
+	i4.href = "https://avenue.cllmcmaster.ca/d2l/home/202806";
+	i4.innerHTML =  "SWFR ENG 3S03";
 
 	parent.appendChild(i1);
+	parent.appendChild(document.createElement("br"));
 	parent.appendChild(i2);
+	parent.appendChild(document.createElement("br"));
 	parent.appendChild(i3);
+	parent.appendChild(document.createElement("br"));
 	parent.appendChild(i4);
 
+	backgroundSet("./BG/WallFall.jpg");
 }
 
+function backgroundSet(url){
+	var body = document.getElementsByTagName("body");
+	var newinfo = "";// body[0].style;
+	newinfo += " "+"background-image: url('"+url+"'); background-size: cover; background-repeat: no-repeat;";
+	body[0].setAttribute("style",newinfo);// = newinfo;
+	console.log(newinfo);
+}
 function addShortcut(shortName,shortURL){
 	var parent = document.getElementById("shortcut");
 	var shortcutlink = document.createElement("a");
@@ -74,7 +88,7 @@ function addShortcut(shortName,shortURL){
 
 function establishLocalStore(){
 	localStorage.setItem("NumPos","14");
-	localStorage.setItem("version", "2.0");
+	localStorage.setItem("version", "2.1");
 
 	localStorage.setItem("ShortcutValue1", "true");
 	localStorage.setItem("ShortcutName1", "Youtube");
@@ -132,6 +146,10 @@ function establishLocalStore(){
 	localStorage.setItem("ShortcutName14", "Bitly");
 	localStorage.setItem("ShortcutURL14", "http://bitly.com");
 
+
+	//
+	//   LINKS IN HEADER
+	//
 	localStorage.setItem("NumLinks","4");
 
 	localStorage.setItem("LinkName1", "SWFR ENG 3I03");
@@ -145,6 +163,18 @@ function establishLocalStore(){
 
 	localStorage.setItem("LinkName4", "SWFR ENG 3S03");
 	localStorage.setItem("LinkURL4", "https://avenue.cllmcmaster.ca/d2l/home/202806");
+
+	//
+	//  DEFAULTS
+	//
+
+	localStorage.setItem("Background","./BG/Default.jpg");
+}
+
+function loadBG() {
+	var mystore = localStorage;
+	var bg = mystore.getItem("Background");
+	backgroundSet(bg);
 }
 
 function buildShortcuts(){
@@ -323,7 +353,7 @@ function deleteThis(i){
 console.log(i);
 	var table = document.getElementById("DECRIPTABLE");
 
-	removeItem = document.getElementById("decrip"+i.id);
+	removeItem = document.getElementById("modify"+i.id);
 	table.removeChild(removeItem);
 console.log(removeItem);
 }
@@ -332,7 +362,9 @@ function decripMod(i) {
 	console.log(i.id);
 
 	console.log(i.id);
-	var table = document.getElementById("DECRIPTABLE");
+	var row = document.getElementById("decrip"+i.id);
+	row.setAttribute("id","modify"+i.id);
+    row.classList.add("modify");
 
 	var cont1 = document.getElementById("info1Cont"+i.id);
 	var cont2 = document.getElementById("info2Cont"+i.id);
@@ -365,7 +397,7 @@ function decripMod(i) {
 	removeItem.setAttribute("onclick", "deleteThis(this)")
 
 	var removeItemIcon = document.createElement("i");
-	removeItemIcon.setAttribute("class", "material-icons");
+	removeItemIcon.setAttribute("class", "material-icons delete");
 	removeItemIcon.innerHTML = "delete";
 	removeItemIcon.setAttribute("id",""+i.id)
 	removeItemIcon.setAttribute("onclick", "deleteThis(this)");
@@ -386,7 +418,15 @@ function decripModed(i){
 	console.log(i.id);
 
 	console.log(i.id);
-	var table = document.getElementById("DECRIPTABLE");
+	var row = document.getElementById("modify"+i.id);
+	console.log(row);
+	row.setAttribute("id","decrip"+i.id);
+	row.classList.remove("modify");
+
+	var removeDeleteHolder = document.getElementById("doStuff"+i.id);
+	removeDeleteHolder.removeChild(removeDeleteHolder.querySelectorAll("li")[0]);
+
+	document.getElementsByClassName("DATADESCRIP");
 
 	var cont1 = document.getElementById("info1Cont"+i.id);
 	var cont2 = document.getElementById("info2Cont"+i.id);
@@ -413,7 +453,7 @@ function decripModed(i){
 
 	i.innerHTML = "lock_open";
 
-	i.setAttribute("onclick", "decripModed(this)");
+	i.setAttribute("onclick", "decripMod(this)");
 }
 
 function descripAdd(i) {
@@ -424,6 +464,8 @@ function descripAdd(i) {
 	console.log(i.id);
 	var table = document.getElementById("DECRIPTABLE");
 	var newRow = document.getElementById("rowNEW");
+	newRow.setAttribute("id","modify"+(numLinks+1));
+	newRow.classList.add("modify");
 
 	table.removeChild(newRow);
 
@@ -498,28 +540,34 @@ function saveShortcuts(){
 	location.reload();
 }
 
-function saveDescrip(){
+function saveDescrip() {
 	var mystore = localStorage;
-	var numLinks = parseInt(mystore.getItem("NumLinks"),10);
+	var numLinks = parseInt(mystore.getItem("NumLinks"), 10);
+
+	var check = document.getElementById("DECRIPTABLE").querySelector(".modify");
+	console.log(check);
+	if (!check) {
 
 
+		var table = document.getElementById("DECRIPTABLE");
+		var data = document.getElementById("DECRIPTABLE").querySelectorAll(".DATADESCRIP");
+		console.log(data[0].querySelector(".info1"));
 
-	var table = document.getElementById("DECRIPTABLE");
-	var data = document.getElementById("DECRIPTABLE").querySelectorAll(".DATADESCRIP");
-	console.log(data[0].querySelector(".info1"));
+		for (var i = 1; i < (numLinks + 1); i++) {
+			localStorage.removeItem("LinkName" + i);
+			localStorage.removeItem("LinkURL" + i);
+		}
+		localStorage.removeItem("NumLinks");
 
-	for (var i = 1; i < (numLinks+1); i++){
-		localStorage.removeItem("LinkName"+i);
-		localStorage.removeItem("LinkURL"+i);
+		for (var i = 0; i < data.length; i++) {
+			localStorage.setItem("LinkName" + (i + 1), data[i].querySelector(".info1").innerHTML);
+			localStorage.setItem("LinkURL" + (i + 1), data[i].querySelector(".info2").innerHTML);
+		}
+		localStorage.setItem("NumLinks", "" + data.length);
+	//	location.reload();
+	} else {
+		window.alert("Lock All Changes Before Saving");
 	}
-	localStorage.removeItem("NumLinks");
-
-	for (var i =0; i< data.length; i++){
-		localStorage.setItem("LinkName"+(i+1),data[i].querySelector(".info1").innerHTML);
-		localStorage.setItem("LinkURL"+(i+1),data[i].querySelector(".info2").innerHTML);
-	}
-	localStorage.setItem("NumLinks",""+data.length);
-	location.reload();
 }
 
   $(document).ready(function(){

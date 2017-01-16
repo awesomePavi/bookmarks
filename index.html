@@ -53,7 +53,7 @@ startTime();
 	</form>
 </div>
 
-    <div class="fixed-action-btn vertical">
+    <div id="settings" class="fixed-action-btn vertical">
         <a class="btn-floating btn-large red">
             <i class="large material-icons">menu</i>
         </a>
@@ -80,14 +80,54 @@ startTime();
 			
 		</form>
 	</div>
+    <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect waves-light btn" style="float: left;">DON'T SAVE</a>
+        <a class="waves-effect waves-light btn" style="float: right;" onclick="saveShortcuts()">SAVE</a>
+    </div>
+</div>
+    <!-- Modal BG Structure -->
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <h4>BACKGROUND</h4>
+            <form action="#" >
+                <fieldset>
+                    <legend>Choose Your Background</legend>
+                    <p id = "BGEdit">
+                        <h1>Coming Soon</h1>
 
+                    </p>
+                </fieldset>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-action modal-close waves-effect waves-light btn" style="float: left;">DON'T SAVE</a>
+            <a class="waves-effect waves-light btn" style="float: right;" onclick="saveShortcuts()">SAVE</a>
+        </div>
+    </div>
+        <!-- Modal Widget Structure -->
+        <div id="modal4" class="modal">
+            <div class="modal-content">
+                <h4>WIDGET</h4>
+                <form action="#" >
+                    <fieldset>
+                        <legend>Choose Your Widget</legend>
+                        <p id = "WidgetEdit">
+                        <h1>Coming Soon</h1>
+
+                        </p>
+                    </fieldset>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a class="modal-action modal-close waves-effect waves-light btn" style="float: left;">DON'T SAVE</a>
+                <a class="waves-effect waves-light btn" style="float: right;" onclick="saveShortcuts()">SAVE</a>
+            </div>
+        </div>
 	
 
-	<div class="modal-footer">
-		<a class="modal-action modal-close waves-effect waves-light btn" style="float: left;">DON'T SAVE</a>
-		<a class="waves-effect waves-light btn" style="float: right;" onclick="saveShortcuts()">SAVE</a>
-	</div>
-</div>
+
 
 
     <!-- Modal Info Structure -->
