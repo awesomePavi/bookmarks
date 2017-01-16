@@ -1,101 +1,122 @@
 <!DOCTYPE html>
 <html>
-	<head>
-<title>SFWR ENG 3</title>
+<head>
+	<title>SFWR ENG 3</title>
 
-<link href="./css/HomePage.css" rel="stylesheet" type="text/css">
+	<link href="./css/HomePage.css" rel="stylesheet" type="text/css">
 
-<!--Import Google Icon Font-->
-<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<!--Import materialize.css-->
-<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/materialize.min.js"></script>
-<!--<script src="Shortcuts.js"></script>-->
-<script src="./js/LocalStorage.js"></script>
-	</head>
+	<!--Import Google Icon Font-->
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--Import materialize.css-->
+	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<!--<script src="Shortcuts.js"></script>-->
+	<script src="./js/LocalStorage.js"></script>
+</head>
 <body>
-<h1></h1>
-<div class="overlay" style="float: left; width: 100%; margin: 0; margin-left:0px; padding: 0;">
-<div id="clock"></div>
-<script>
-function startTime() {
-    var today = new Date();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    var s = today.getSeconds();
-    var amPm = "AM";
-    if (h > 12){
-		amPm = "PM"
-		h -=12;
-    }
-    m = checkTime(m);
-    s = checkTime(s);
-    document.getElementById('clock').innerHTML =
-    h + ":" + m + ":" + s +" "+amPm;
-    var t = setTimeout(startTime, 500);
-}
 
-function checkTime(i) {
+	<h1></h1>
+	<div class="overlay" style="float: left; width: 100%; margin: 0; margin-left:0px; padding: 0;">
+		<div id="clock"></div>
+        <script>
+			function startTime() {
+				var today = new Date();
+				var h = today.getHours();
+				var m = today.getMinutes();
+				var s = today.getSeconds();
+				var amPm = "AM";
+				if (h > 12){
+					amPm = "PM"
+					h -=12;
+				}
+				m = checkTime(m);
+				s = checkTime(s);
+				document.getElementById('clock').innerHTML =
+				h + ":" + m + ":" + s +" "+amPm;
+				var t = setTimeout(startTime, 500);
+			}
+
+			function checkTime(i) {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
     return i;
 }
 startTime();
 </script>
 <div id="classInfo">
-<a href="http://www.cas.mcmaster.ca/~deza/secs4O03_16.html">SWFR ENG 3O03</a> | 
-<a href="http://ocw.mit.edu/courses/sloan-school-of-management/15-053-optimization-methods-in-management-science-spring-2013/lecture-notes/">MIT Notes</a><br>
-<a href="https://avenue.cllmcmaster.ca/d2l/home/189802">SWFR ENG 3XA3</a> |
-<a href="https://gitlab.cas.mcmaster.ca/smiths/se3xa3">Git Repo</a><br>
-<a href="http://www.michaelliut.ca/se3db3_fall_2016.html">SWFR ENG 3DB3</a><br>
-<a href="http://www.cas.mcmaster.ca/~se3ra3/">SWFR ENG 3RA3</a><br>
-<a href="http://www.cas.mcmaster.ca/~mohrens/3mx3/">SWFR ENG 3MX3</a><br>
-<a href="https://avenue.cllmcmaster.ca/d2l/home/188262">SWFR ENG 3BB4</a><br>
-<br>
 </div>
 </div>
 
 <div style="float: left; width:100%;  padding-top: 20px; padding-bottom: 10px">
-<form  method="get" action="https://www.google.com/search">
-<input type="text" name="q" class="mytext" placeholder="  Google Search" value="" >
-</form>
+	<form  method="get" action="https://www.google.com/search">
+		<input type="text" name="q" class="mytext" placeholder="  Google Search" value="" >
+	</form>
 </div>
 
-<!-- Colored FAB button with ripple -->
- <div id="settings" class="fixed-action-btn">
-    <a class="btn-floating btn-large orange waves-effect waves-light" href="#modal1">
-      <i class="large material-icons">add</i>
-    </a>
+    <div class="fixed-action-btn vertical">
+        <a class="btn-floating btn-large red">
+            <i class="large material-icons">menu</i>
+        </a>
+        <ul>
+            <li><a class="btn-floating yellow darken-1"><i class="material-icons">today</i></a></li>
+            <li><a class="btn-floating green" href="#modal2"><i class="material-icons">credit_card</i></a></li>
+            <li><a class="btn-floating blue" href="#modal1"><i class="material-icons">view_module</i></a></li>
+        </ul>
+    </div>
 
+<!-- Modal Icons Structure -->
+<div id="modal1" class="modal">
+	<div class="modal-content">
+		<h4>SHORTCUTS</h4>
+		<form action="#" >
+			<fieldset>
+				<legend>Select What You Want!</legend>
+				<p id = "shortcutEdit">
+
+
+
+				</p>
+			</fieldset>
+			
+		</form>
+	</div>
+
+	
+
+	<div class="modal-footer">
+		<a class="modal-action modal-close waves-effect waves-light btn" style="float: left;">DON'T SAVE</a>
+		<a class="waves-effect waves-light btn" style="float: right;" onclick="saveShortcuts()">SAVE</a>
+	</div>
 </div>
 
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Modal Header</h4>
-      <form action="#" >
-      <fieldset>
-      <legend>SHORTCUTS</legend>
-     <p id = "shortcutEdit">
+
+    <!-- Modal Info Structure -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <h4>Quick Links</h4>
+            <form action="#" >
+                <fieldset>
+                    <legend>What Do You want linked</legend>
+                    <p id = "pageDisp">
 
 
 
-    </p>
-    </fieldset>
-    
-    </form>
+                    </p>
+                </fieldset>
+
+            </form>
+        </div>
+
+
+
+        <div class="modal-footer">
+            <a class="modal-action modal-close waves-effect waves-light btn" style="float: left;">DON'T SAVE</a>
+            <a class="waves-effect waves-light btn" style="float: right;" onclick="saveDescrip()">SAVE</a>
+        </div>
     </div>
 
- 
-
-    <div class="modal-footer">
- 	<a class="modal-action modal-close waves-effect waves-light btn" style="float: left;">DONT SAVE</a>
-    <a class="waves-effect waves-light btn" style="float: right;" onclick="saveShortcuts()">SAVE</a>
-    </div>
-  </div>
-          
 <script>
-buildEdit();
+	buildEdit();
 </script>
 
 
@@ -106,13 +127,14 @@ buildEdit();
  - github gist
  - clock
  - weather widget
- -->
+-->
 
 
 <div  id="shortcut" style="float: left; padding-top: 10px; padding-bottom: 10px; margin-left: -10px;  width: 100%">
+
 </div>
 <script>
-loadShortCuts();
+    loadPage();
 </script>
 <br>
 </body>

@@ -1,3 +1,16 @@
+.MinStuff{
+	padding: 0px;
+	margin: 0px;
+}
+
+.greyText{
+	color: #9E9E9E;
+}
+
+.greyText:hover {
+	color: #9E9E9E;
+}
+
 .md-button {
   padding: 0 6px 0 6px;
   margin: 6px 8px 6px 8px;
