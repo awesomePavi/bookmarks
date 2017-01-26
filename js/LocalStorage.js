@@ -1,3 +1,5 @@
+var numLinks = 0;
+
 function loadPage(){
 if (typeof(Storage)!== "undefined") {
 	if(localStorage.getItem("version") == "2.1"){
@@ -452,6 +454,7 @@ function decripModed(i){
 	cont2.appendChild(info2);
 
 	i.innerHTML = "lock_open";
+	i.setAttribute("class", "waves-effect waves-light material-icons circle blue");
 
 	i.setAttribute("onclick", "decripMod(this)");
 }
@@ -459,19 +462,23 @@ function decripModed(i){
 function descripAdd(i) {
 
 	var mystore = localStorage;
-	var numLinks = parseInt(mystore.getItem("NumLinks"),10);
+	var data = document.getElementById("DECRIPTABLE").querySelectorAll(".DATADESCRIP");
+	var numLinks = data.length;
+	console.log(numLinks);
 
 	console.log(i.id);
 	var table = document.getElementById("DECRIPTABLE");
 	var newRow = document.getElementById("rowNEW");
-	newRow.setAttribute("id","modify"+(numLinks+1));
-	newRow.classList.add("modify");
 
 	table.removeChild(newRow);
 
 	var row = document.createElement("li");
-	row.setAttribute("id","rowNEW")
+	row.setAttribute("id","modify"+(numLinks+1));
 	row.setAttribute("class", "collection-item avatar");
+	row.classList.add("modify");
+
+		var doStuff = document.createElement("ul");
+		doStuff.setAttribute("id","doStuff"+(numLinks+1));
 
 	var edit = document.createElement("i");
 	edit.setAttribute("class", "waves-effect waves-light material-icons circle red");
@@ -513,6 +520,21 @@ function descripAdd(i) {
 	info2.setAttribute("placeholder", "https://www.google.com");
 	info2.setAttribute("id", "info2"+(numLinks+1));
 
+	var removeItem = document.createElement("li");
+	removeItem.setAttribute("class", "btn-floating red");
+	removeItem.setAttribute("id",""+(numLinks+1));
+	removeItem.setAttribute("onclick", "deleteThis(this)")
+
+	var removeItemIcon = document.createElement("i");
+	removeItemIcon.setAttribute("class", "material-icons delete");
+	removeItemIcon.innerHTML = "delete";
+	removeItemIcon.setAttribute("id",""+(numLinks+1))
+	removeItemIcon.setAttribute("onclick", "deleteThis(this)");
+
+
+
+	removeItem.appendChild(removeItemIcon);
+
 
 	info1Cont.appendChild(info1);
 	info2Cont.appendChild(info2);
@@ -523,11 +545,14 @@ function descripAdd(i) {
 	content.appendChild(info2pre);
 	content.appendChild(info2Cont);
 
-	row.appendChild(edit);
+	doStuff.appendChild(edit);
+	doStuff.appendChild(removeItem);
+	row.appendChild(doStuff);
 	row.appendChild(content);
 
 	table.appendChild(row);
 	table.appendChild(newRow);
+	numLinks++;
 }
 
 function saveShortcuts(){
@@ -564,7 +589,7 @@ function saveDescrip() {
 			localStorage.setItem("LinkURL" + (i + 1), data[i].querySelector(".info2").innerHTML);
 		}
 		localStorage.setItem("NumLinks", "" + data.length);
-	//	location.reload();
+	    location.reload();
 	} else {
 		window.alert("Lock All Changes Before Saving");
 	}
